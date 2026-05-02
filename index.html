@@ -135,7 +135,7 @@ body::before{
     box-shadow:0 0 8px red;
 }
 
-.user-card{
+.{
     background:linear-gradient(180deg, #252525, #1d1d1d);
     border-radius:14px;
     padding:12px 14px;
@@ -150,7 +150,7 @@ body::before{
     z-index:1;
 }
 
-.user-card img{
+. img{
     width:52px;
     height:52px;
     border-radius:50%;
@@ -158,7 +158,7 @@ body::before{
     box-shadow:0 0 15px rgba(255,0,0,0.5);
 }
 
-.user-card span{
+. span{
     font-size:14px;
     font-weight:600;
     color:#fff;
@@ -167,7 +167,7 @@ body::before{
     word-break:break-word;
 }
 
-.user-card:hover{
+.:hover{
     transform:translateY(-2px) scale(1.015);
     border-color:#ff2a2a;
     animation:neonPulse 1.2s infinite alternate;
@@ -189,7 +189,7 @@ body::before{
     }
 }
 
-.user-card.active{
+..active{
     border-color:#ff2a2a;
     background:linear-gradient(180deg, #2b1414, #1f1111);
     box-shadow:
@@ -1049,7 +1049,10 @@ input:disabled{
                 <img src="assets/img/bily.png" alt="Bily TheKid">
                 <span>Bily TheKid</span>
             </div>
-
+           <div class="user-card" onclick="selecionarUsuario(this, '<@913555595313942578>', 'Carlos Legion', 'assets/img/carlos.png')">
+           <img src="assets/img/carlos.png" alt="Carlos Legion">
+           <span>Carlos Legion</span>
+</div>
         </div>
 
         <div class="avatar-preview-wrap">
@@ -1243,6 +1246,7 @@ input:disabled{
         if(texto.includes("Nego")) return "assets/img/nego.png";
         if(texto.includes("Katleia")) return "assets/img/katleia.png";
         if(texto.includes("Bily")) return "assets/img/bily.png";
+        if(texto.includes("Carlos")) return "assets/img/carlos.png";
         return "";
     }
     
