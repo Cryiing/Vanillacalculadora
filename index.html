@@ -973,7 +973,10 @@ input:disabled{
                 <span>Nego Catra</span>
             </div>
 
-        </div>
+            <div class="user-card" onclick="selecionarUsuario(this, '<@819367700924596285>', 'Katleia Marquez', 'assets/img/katleia.png')">
+                <img src="assets/img/katleia.png" alt="Katleia Marquez">
+                <span>Katleia Marquez</span>
+            </div>
 
         <div class="avatar-preview-wrap">
             <img id="avatarPreview" class="avatar-preview" src="" alt="Avatar">
@@ -1162,6 +1165,7 @@ input:disabled{
         if(texto.includes("Safira")) return "assets/img/default.png";
         if(texto.includes("Theus")) return "assets/img/theus.png";
         if(texto.includes("Nego")) return "assets/img/nego.png";
+        if(texto.includes("Katleia")) return "assets/img/katleia.png";
         return "";
     }
     
