@@ -1135,8 +1135,6 @@ input:disabled{
 
         <div id="resultado"></div>
 
-        <textarea id="discordText" placeholder="Texto para Discord"></textarea>
-
         <button class="discord-btn" onclick="enviarWebhook()">
         <img src="assets/img/discord.png" class="icon">Registrar lavagem
         </button>
@@ -1472,7 +1470,7 @@ nome da org: ${nomeOrg}
 Parceria: ${tipoTexto}
 depositado no painel: ${Math.floor(painel).toLocaleString('pt-BR')}`;
 
-        document.getElementById("discordText").value = texto;
+    
     }
 
     function atualizarOrgPorParceria(){
@@ -1492,12 +1490,7 @@ depositado no painel: ${Math.floor(painel).toLocaleString('pt-BR')}`;
         input.addEventListener("change", atualizarOrgPorParceria);
     });
 
-    function copiarTexto(){
-        let texto = document.getElementById("discordText");
-        texto.select();
-        document.execCommand("copy");
-    }
-    
+   
     function abrirDiscord(){
         window.open("https://discordapp.com/channels/1066208248555896852/1483261178007388170", "_blank");
     }
