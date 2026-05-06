@@ -1544,6 +1544,108 @@ depositado no painel: ${Math.floor(painel).toLocaleString('pt-BR')}`;
         }, 1800);
     });
 
+    async function enviarWebhook(){
+
+    const valor = document.getElementById("valor").value;
+    const org = document.getElementById("nomeOrg").value || "Não informado";
+
+    let tipoSelecionado = document.querySelector('input[name="parceria"]:checked');
+
+    let parceria = "Sem parceria";
+
+    if(tipoSelecionado){
+        if(tipoSelecionado.value === "normal") parceria = "Normal";
+        if(tipoSelecionado.value === "forte") parceria = "Forte";
+    }
+
+    const texto = document.getElementById("discordText").value;
+
+    if(!texto){
+        alert("Faça uma calculagem primeiro.");
+        return;
+    }
+
+    const webhookURL = "COLE_WEBHOOK_AQUI";
+
+    let painelTexto = "";
+
+    const linhas = texto.split("\n");
+
+    linhas.forEach(linha => {
+        if(linha.toLowerCase().includes("depositado no painel")){
+            painelTexto = linha.replace("depositado no painel:", "").trim();
+        }
+    });
+
+    try{
+
+        await fetch(webhookURL, {
+
+            method:"POST",
+
+            headers:{
+                "Content-Type":"application/json"
+            },
+
+            body:JSON.stringify({
+
+                username:"Vanilla Hub",
+
+                embeds:[{
+
+                    title:"💸 Nova Lavagem",
+                    color:16711680,
+
+                    fields:[
+
+                        {
+                            name:"👤 Quem lavou",
+                            value:usuarioSelecionado,
+                            inline:false
+                        },
+
+                        {
+                            name:"💰 Valor",
+                            value:valor,
+                            inline:true
+                        },
+
+                        {
+                            name:"🏢 Organização",
+                            value:org,
+                            inline:true
+                        },
+
+                        {
+                            name:"🤝 Parceria",
+                            value:parceria,
+                            inline:true
+                        },
+
+                        {
+                            name:"🏦 Depositado no painel",
+                            value:painelTexto,
+                            inline:false
+                        }
+                    ],
+
+                    footer:{
+                        text:"Vanilla Hub"
+                    },
+
+                    timestamp:new Date()
+                }]
+            })
+        });
+
+        alert("Lavagem registrada!");
+
+    }catch(err){
+
+        console.error(err);
+        alert("Erro ao enviar.");
+    }
+}
     </script>
 </body>
 </html>
