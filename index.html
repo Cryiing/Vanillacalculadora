@@ -1232,7 +1232,12 @@ overlay,
            <div class="user-card" onclick="selecionarUsuario(this, '<@913555595313942578>', 'Carlos Legion', 'assets/img/carlos.png')">
            <img src="assets/img/carlos.png" alt="Carlos Legion">
            <span>Carlos Legion</span>
+        
+          <div class="user-card" onclick="selecionarUsuario(this, '<@701859793345970276>', 'Rebeca Urach', 'assets/img/default.png')">
+          <img src="assets/img/default.png" alt="Rebeca Urach">
+          <span>Rebeca Urach</span>
 </div>
+
         </div>
 
         <div class="avatar-preview-wrap">
@@ -1421,6 +1426,7 @@ overlay,
         if(texto.includes("Katleia")) return "assets/img/katleia.png";
         if(texto.includes("Bily")) return "assets/img/bily.png";
         if(texto.includes("Carlos")) return "assets/img/carlos.png";
+        if(texto.includes("Rebeca")) return "assets/img/default.png";
         return "";
     }
     
