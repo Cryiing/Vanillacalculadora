@@ -1545,7 +1545,17 @@ depositado no painel: ${Math.floor(painel).toLocaleString('pt-BR')}`;
     });
 
     async function enviarWebhook(){
+    const cooldownTempo = 30000; // 30 segundos
+    const ultimoEnvio = localStorage.getItem("ultimoEnvioLavagem");
+    const agora = Date.now();
 
+if(ultimoEnvio && agora - ultimoEnvio < cooldownTempo){
+    let segundosRestantes = Math.ceil((cooldownTempo - (agora - ultimoEnvio)) / 1000);
+    alert(`Aguarde ${segundosRestantes} segundos para registrar outra lavagem.`);
+    return;
+}
+
+localStorage.setItem("ultimoEnvioLavagem", agora);
     const valor = document.getElementById("valor").value;
     const org = document.getElementById("nomeOrg").value || "Não informado";
 
@@ -1565,7 +1575,7 @@ depositado no painel: ${Math.floor(painel).toLocaleString('pt-BR')}`;
         return;
     }
 
-    const webhookURL = "https://discord.com/api/webhooks/1501632950700216330/TePtC_70ErlYxOOdj5EMSY40CZboOMsBwzTWEUwC-NfVl8ZFTP5QGvPqI2pYmohbMFP6";
+    const webhookURL = "https://discord.com/api/webhooks/1501639905129009252/gvT8G4c8Cjsbgs5fVpRsrT6G7evrWf_b9C4Z11mZR42G3nxK8f7j5EQTR6-3Bn2KgYhw";
 
     let painelTexto = "";
 
