@@ -865,11 +865,14 @@ input:disabled{
     filter:grayscale(1);
 }
 
-.overlay,
+overlay,
 .container,
-.watermark,
 .support-modal{
     position:relative;
+    z-index:2;
+}
+
+.watermark{
     z-index:2;
 }
 /* LOADING SCREEN */
