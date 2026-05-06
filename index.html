@@ -865,9 +865,16 @@ input:disabled{
     filter:grayscale(1);
 }
 
-
+.overlay,
+.container,
+.watermark,
+.support-modal{
+    position:relative;
+    z-index:2;
+}
 /* LOADING SCREEN */
 .loading-screen{
+    z-index:999999;
     position:fixed;
     inset:0;
     background:#050505;
@@ -1013,11 +1020,113 @@ input:disabled{
         drop-shadow(0 0 35px rgba(255,0,0,.8));
     animation:loadingPulse 2s ease-in-out infinite;
 }
+/* PARTÍCULAS VERMELHAS */
+.particles-bg{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:0;
+}
 
+.particles-bg span{
+    position:absolute;
+    width:6px;
+    height:6px;
+    background:red;
+    border-radius:50%;
+    opacity:.35;
+    filter:blur(1px);
+    box-shadow:
+        0 0 10px red,
+        0 0 22px rgba(255,0,0,.8);
+    animation:particleFloat 12s linear infinite;
+}
+
+.particles-bg span:nth-child(1){left:10%; animation-delay:0s; animation-duration:13s;}
+.particles-bg span:nth-child(2){left:22%; animation-delay:2s; animation-duration:16s;}
+.particles-bg span:nth-child(3){left:35%; animation-delay:4s; animation-duration:14s;}
+.particles-bg span:nth-child(4){left:48%; animation-delay:1s; animation-duration:18s;}
+.particles-bg span:nth-child(5){left:60%; animation-delay:3s; animation-duration:15s;}
+.particles-bg span:nth-child(6){left:72%; animation-delay:5s; animation-duration:17s;}
+.particles-bg span:nth-child(7){left:84%; animation-delay:2s; animation-duration:13s;}
+.particles-bg span:nth-child(8){left:93%; animation-delay:6s; animation-duration:19s;}
+.particles-bg span:nth-child(9){left:15%; animation-delay:7s; animation-duration:15s;}
+.particles-bg span:nth-child(10){left:55%; animation-delay:8s; animation-duration:18s;}
+
+@keyframes particleFloat{
+    0%{
+        top:110%;
+        transform:translateY(0) scale(.6);
+        opacity:0;
+    }
+
+    20%{
+        opacity:.35;
+    }
+
+    100%{
+        top:-10%;
+        transform:translateY(-40px) scale(1.2);
+        opacity:0;
+    }
+}
+/* ANIMAÇÃO DO RESULTADO */
+.result-card{
+    animation:resultShow .35s ease both;
+}
+
+.result-card:nth-child(1){
+    animation-delay:.02s;
+}
+
+.result-card:nth-child(2){
+    animation-delay:.08s;
+}
+
+.result-card:nth-child(3){
+    animation-delay:.14s;
+}
+
+@keyframes resultShow{
+    from{
+        opacity:0;
+        transform:translateY(12px) scale(.98);
+        filter:blur(3px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+        filter:blur(0);
+    }
+}
+
+.result-card.highlight{
+    animation:resultHighlight .45s ease both;
+}
+
+@keyframes resultHighlight{
+    from{
+        opacity:0;
+        transform:translateY(14px) scale(.97);
+        box-shadow:0 0 0 rgba(255,0,0,0);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+        box-shadow:0 0 18px rgba(255,0,0,.45);
+    }
+}    
 </style>
 </head>
 
 <body>
+<div class="particles-bg">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+</div>
 <div class="toast-container" id="toastContainer"></div>
 <div id="loadingScreen" class="loading-screen">
     <div class="loading-content">
