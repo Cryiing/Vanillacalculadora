@@ -1779,14 +1779,21 @@ depositado no painel: ${Math.floor(painel).toLocaleString('pt-BR')}`;
     };
 
 
-    window.addEventListener("load", () => {
-        const loading = document.getElementById("loadingScreen");
+   window.addEventListener("load", () => {
+    const loading = document.getElementById("loadingScreen");
 
-        setTimeout(() => {
-            loading.classList.add("hidden");
-        }, 1800);
-    });
+    setTimeout(() => {
+        loading.classList.add("hidden");
+    }, 1800);
+});
 
+setTimeout(() => {
+    const loading = document.getElementById("loadingScreen");
+
+    if(loading){
+        loading.classList.add("hidden");
+    }
+}, 3500);
     async function enviarWebhook(){
         const cooldownTempo = 30000;
         const ultimoEnvio = localStorage.getItem("ultimoEnvioLavagem");
