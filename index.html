@@ -1999,7 +1999,7 @@ async function enviarRegistroMembro(){
 
     registroEnviando = true;
 
-    const webhookRegistro = "SEU_WEBHOOK_AQUI";
+    const webhookRegistro = "https://discord.com/api/webhooks/1501937517061083137/bKSD3jlns7z0ZNAZ7XjPSObUDIBPLA2mYdGrBNV2tFdl00YCOrlDtMQTpeRQfnPTvljg";
 
     const primeiroNome = nome
         .split(" ")[0]
@@ -2042,7 +2042,7 @@ async function enviarRegistroMembro(){
         });
 
         localStorage.setItem("ultimoRegistroMembro", agora);
-        mostrarToast("✓ Registro enviado! Aguarde aprovação da equipe.");
+        mostrarToast("Registro enviado! Aguarde aprovação da equipe.");
         fecharPopupRegistro();
 
         document.getElementById("registroNome").value = "";
