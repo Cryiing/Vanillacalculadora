@@ -1100,6 +1100,66 @@ input:disabled{
     animation:resultHighlight .45s ease both;
 }
 
+    .register-btn{
+    background:#8b0000;
+    margin-top:0;
+}
+
+.register-modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.75);
+    backdrop-filter:blur(6px);
+    z-index:9999999;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.register-modal.active{
+    display:flex;
+}
+
+.register-content{
+    width:100%;
+    max-width:420px;
+    background:#111;
+    border:1px solid rgba(255,0,0,.35);
+    border-radius:18px;
+    padding:24px;
+    box-shadow:0 0 35px rgba(255,0,0,.35);
+    text-align:center;
+}
+
+.register-content h3{
+    margin-top:0;
+    margin-bottom:16px;
+}
+
+.register-content input{
+    width:100%;
+    height:45px;
+    margin-bottom:12px;
+    border:none;
+    border-radius:10px;
+    background:#222;
+    color:#fff;
+    padding:0 12px;
+    box-sizing:border-box;
+    font-size:16px;
+}
+
+.register-content input[type="file"]{
+    padding:11px;
+    height:auto;
+}
+
+.register-close{
+    background:#333;
+    margin-top:10px;
+}
+    
 @keyframes resultHighlight{
     from{
         opacity:0;
@@ -1244,6 +1304,9 @@ input:disabled{
             <button class="support-btn" onclick="abrirPopupSuporte()">
                 <img src="assets/img/discord.png" class="icon">Suporte
             </button>
+            <button class="register-btn" onclick="abrirPopupRegistro()">
+               📋 Registrar membro
+        </button>
         </div>
     </div>
 </div>
@@ -1395,7 +1458,18 @@ input:disabled{
         </div>
     </div>
 </div>
+<div id="registerModal" class="register-modal">
+    <div class="register-content">
+        <h3>Registrar membro</h3>
 
+        <input type="text" id="registroNome" placeholder="Nome do personagem">
+        <input type="text" id="registroDiscord" placeholder="ID do Discord">
+        <input type="file" id="registroFoto" accept="image/*">
+
+        <button onclick="enviarRegistroMembro()">Enviar registro</button>
+        <button class="register-close" onclick="fecharPopupRegistro()">Cancelar</button>
+    </div>
+</div> 
 <div class="watermark">Gaby/Cry & Viktoria</div>
 
 <script>
@@ -1867,6 +1941,90 @@ depositado no painel: ${Math.floor(painel).toLocaleString('pt-BR')}`;
         }, 300);
 
     }, 3000);
+}
+    function abrirPopupRegistro(){
+    document.getElementById("registerModal").classList.add("active");
+}
+
+function fecharPopupRegistro(){
+    document.getElementById("registerModal").classList.remove("active");
+}
+
+async function enviarRegistroMembro(){
+    let nome = document.getElementById("registroNome").value.trim();
+    let discordId = document.getElementById("registroDiscord").value.trim();
+    let foto = document.getElementById("registroFoto").files[0];
+
+    if(!nome){
+        mostrarToast("Digite o nome do personagem.", "error");
+        return;
+    }
+
+    if(!discordId){
+        mostrarToast("Digite o ID do Discord.", "error");
+        return;
+    }
+
+    if(!foto){
+        mostrarToast("Selecione a foto do personagem.", "error");
+        return;
+    }
+
+    const webhookRegistro = "COLE_AQUI_O_WEBHOOK_DO_CANAL_DE_REGISTRO";
+
+    const formData = new FormData();
+
+    formData.append("payload_json", JSON.stringify({
+        username:"Vanilla Hub - Registro",
+        embeds:[{
+            title:"📋 Novo registro de membro",
+            color:16711680,
+            fields:[
+                {
+                    name:"👤 Nome do personagem",
+                    value:nome,
+                    inline:false
+                },
+                {
+                    name:"🆔 ID Discord",
+                    value:discordId,
+                    inline:false
+                },
+                {
+                    name:"🔔 Menção",
+                    value:`<@${discordId}>`,
+                    inline:false
+                }
+            ],
+            image:{
+                url:"attachment://personagem.png"
+            },
+            footer:{
+                text:"Aguardando aprovação"
+            },
+            timestamp:new Date()
+        }]
+    }));
+
+    formData.append("file", foto, "personagem.png");
+
+    try{
+        await fetch(webhookRegistro, {
+            method:"POST",
+            body:formData
+        });
+
+        mostrarToast("Registro enviado para aprovação!");
+        fecharPopupRegistro();
+
+        document.getElementById("registroNome").value = "";
+        document.getElementById("registroDiscord").value = "";
+        document.getElementById("registroFoto").value = "";
+
+    }catch(error){
+        console.error(error);
+        mostrarToast("Erro ao enviar registro.", "error");
+    }
 }
     </script>
 </body>
