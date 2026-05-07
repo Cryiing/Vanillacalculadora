@@ -1961,6 +1961,24 @@ function fecharPopupRegistro(){
 }
 
 async function enviarRegistroMembro(){
+    let registroEnviando = false;
+
+async function enviarRegistroMembro(){
+    if(registroEnviando){
+        mostrarToast("Aguarde, o registro já está sendo enviado.", "error");
+        return;
+    }
+
+    const cooldownRegistro = 60000;
+    const ultimoRegistro = localStorage.getItem("ultimoRegistroMembro");
+    const agora = Date.now();
+
+    if(ultimoRegistro && agora - ultimoRegistro < cooldownRegistro){
+        let segundosRestantes = Math.ceil((cooldownRegistro - (agora - ultimoRegistro)) / 1000);
+        mostrarToast(`Aguarde ${segundosRestantes} segundos para enviar outro registro.`, "error");
+        return;
+    }
+
     let nome = document.getElementById("registroNome").value.trim();
     let discordId = document.getElementById("registroDiscord").value.trim();
     let foto = document.getElementById("registroFoto").files[0];
@@ -1979,6 +1997,8 @@ async function enviarRegistroMembro(){
         mostrarToast("Selecione a foto do personagem.", "error");
         return;
     }
+
+    registroEnviando = true;
 
     const webhookRegistro = "https://discord.com/api/webhooks/1501937517061083137/bKSD3jlns7z0ZNAZ7XjPSObUDIBPLA2mYdGrBNV2tFdl00YCOrlDtMQTpeRQfnPTvljg";
 
@@ -2024,7 +2044,9 @@ async function enviarRegistroMembro(){
             body:formData
         });
 
-        mostrarToast("Registro enviado para aprovação!");
+        localStorage.setItem("ultimoRegistroMembro", agora);
+
+        mostrarToast("✓ Registro enviado! Aguarde aprovação da equipe.");
         fecharPopupRegistro();
 
         document.getElementById("registroNome").value = "";
@@ -2034,7 +2056,10 @@ async function enviarRegistroMembro(){
     }catch(error){
         console.error(error);
         mostrarToast("Erro ao enviar registro.", "error");
+    }finally{
+        registroEnviando = false;
     }
+}
 }
     </script>
 </body>
