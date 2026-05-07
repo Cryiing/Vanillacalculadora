@@ -2005,36 +2005,59 @@ async function enviarRegistroMembro(){
     const formData = new FormData();
 
     formData.append("payload_json", JSON.stringify({
-        username:"Vanilla Hub - Registro",
-        embeds:[{
-            title:"📋 Novo registro de membro",
-            color:16711680,
-            fields:[
-                {
-                    name:"👤 Nome do personagem",
-                    value:nome,
-                    inline:false
-                },
-                {
-                    name:"🆔 ID Discord",
-                    value:discordId,
-                    inline:false
-                },
-                {
-                    name:"🔔 Menção",
-                    value:`<@${discordId}>`,
-                    inline:false
-                }
-            ],
-            image:{
-                url:"attachment://personagem.png"
+        const primeiroNome = nome
+    .split(" ")[0]
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+
+const codigoHTML =
+`<div class="user-card" onclick="selecionarUsuario(this, '<@${discordId}>', '${nome}', 'assets/img/${primeiroNome}.png')">
+    <img src="assets/img/${primeiroNome}.png" alt="${nome}">
+    <span>${nome}</span>
+</div>`;
+
+formData.append("payload_json", JSON.stringify({
+    username:"Vanilla Hub - Registro",
+    embeds:[{
+        title:"📋 Novo registro de membro",
+        color:16711680,
+        fields:[
+            {
+                name:"👤 Nome do personagem",
+                value:nome,
+                inline:false
             },
-            footer:{
-                text:"Aguardando aprovação"
+            {
+                name:"🆔 ID Discord",
+                value:discordId,
+                inline:false
             },
-            timestamp:new Date()
-        }]
-    }));
+            {
+                name:"🔔 Menção",
+                value:`<@${discordId}>`,
+                inline:false
+            },
+            {
+                name:"🧩 Código pronto",
+                value:"```html\n" + codigoHTML + "\n```",
+                inline:false
+            },
+            {
+                name:"🖼️ Nome do PNG",
+                value:`${primeiroNome}.png`,
+                inline:false
+            }
+        ],
+        image:{
+            url:"attachment://personagem.png"
+        },
+        footer:{
+            text:"Aguardando aprovação"
+        },
+        timestamp:new Date()
+    }]
+}));
 
     formData.append("file", foto, "personagem.png");
 
