@@ -1960,8 +1960,7 @@ function fecharPopupRegistro(){
     document.getElementById("registerModal").classList.remove("active");
 }
 
-async function enviarRegistroMembro(){
-    let registroEnviando = false;
+let registroEnviando = false;
 
 async function enviarRegistroMembro(){
     if(registroEnviando){
@@ -2000,64 +1999,39 @@ async function enviarRegistroMembro(){
 
     registroEnviando = true;
 
-    const webhookRegistro = "https://discord.com/api/webhooks/1501937517061083137/bKSD3jlns7z0ZNAZ7XjPSObUDIBPLA2mYdGrBNV2tFdl00YCOrlDtMQTpeRQfnPTvljg";
+    const webhookRegistro = "SEU_WEBHOOK_AQUI";
 
-    const formData = new FormData();
+    const primeiroNome = nome
+        .split(" ")[0]
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
 
-    formData.append("payload_json", JSON.stringify({
-        const primeiroNome = nome
-    .split(" ")[0]
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "");
-
-const codigoHTML =
+    const codigoHTML =
 `<div class="user-card" onclick="selecionarUsuario(this, '<@${discordId}>', '${nome}', 'assets/img/${primeiroNome}.png')">
     <img src="assets/img/${primeiroNome}.png" alt="${nome}">
     <span>${nome}</span>
 </div>`;
 
-formData.append("payload_json", JSON.stringify({
-    username:"Vanilla Hub - Registro",
-    embeds:[{
-        title:"📋 Novo registro de membro",
-        color:16711680,
-        fields:[
-            {
-                name:"👤 Nome do personagem",
-                value:nome,
-                inline:false
-            },
-            {
-                name:"🆔 ID Discord",
-                value:discordId,
-                inline:false
-            },
-            {
-                name:"🔔 Menção",
-                value:`<@${discordId}>`,
-                inline:false
-            },
-            {
-                name:"🧩 Código pronto",
-                value:"```html\n" + codigoHTML + "\n```",
-                inline:false
-            },
-            {
-                name:"🖼️ Nome do PNG",
-                value:`${primeiroNome}.png`,
-                inline:false
-            }
-        ],
-        image:{
-            url:"attachment://personagem.png"
-        },
-        footer:{
-            text:"Aguardando aprovação"
-        },
-        timestamp:new Date()
-    }]
-}));
+    const formData = new FormData();
+
+    formData.append("payload_json", JSON.stringify({
+        username:"Vanilla Hub - Registro",
+        embeds:[{
+            title:"📋 Novo registro de membro",
+            color:16711680,
+            fields:[
+                { name:"👤 Nome do personagem", value:nome, inline:false },
+                { name:"🆔 ID Discord", value:discordId, inline:false },
+                { name:"🔔 Menção", value:`<@${discordId}>`, inline:false },
+                { name:"🧩 Código pronto", value:"```html\n" + codigoHTML + "\n```", inline:false },
+                { name:"🖼️ Nome do PNG", value:`${primeiroNome}.png`, inline:false }
+            ],
+            image:{ url:"attachment://personagem.png" },
+            footer:{ text:"Aguardando aprovação" },
+            timestamp:new Date()
+        }]
+    }));
 
     formData.append("file", foto, "personagem.png");
 
@@ -2068,7 +2042,6 @@ formData.append("payload_json", JSON.stringify({
         });
 
         localStorage.setItem("ultimoRegistroMembro", agora);
-
         mostrarToast("✓ Registro enviado! Aguarde aprovação da equipe.");
         fecharPopupRegistro();
 
