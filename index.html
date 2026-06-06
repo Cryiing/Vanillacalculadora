@@ -1229,19 +1229,9 @@ input:disabled{
                 <span>Viktoria Modesta</span>
             </div>
 
-            <div class="user-card" onclick="selecionarUsuario(this, '<@732615061872312381>', 'Gabriella Wiver', 'assets/img/gaby.png')">
-                <img src="assets/img/gaby.png" alt="Gabriella Wiver">
-                <span>Gabriella Wiver</span>
-            </div>
-
             <div class="user-card" onclick="selecionarUsuario(this, '<@1410099983830614026>', 'Nayumi ferraz', 'assets/img/nayumi.png')">
                 <img src="assets/img/nayumi.png" alt="Nayumi ferraz">
                 <span>Nayumi ferraz</span>
-            </div>
-
-            <div class="user-card" onclick="selecionarUsuario(this, '<@1351364910285586502>', 'Ciri', 'assets/img/ciri.png')">
-                <img src="assets/img/ciri.png" alt="Ciri">
-                <span>Ciri</span>
             </div>
 
             <div class="user-card" onclick="selecionarUsuario(this, '<@466849832238055435>', 'Safira Yagami', 'assets/img/safira.png')">
@@ -1249,22 +1239,10 @@ input:disabled{
                 <span>Safira Yagami</span>
             </div>
 
-            <div class="user-card" onclick="selecionarUsuario(this, '<@949146695764160524>', 'Theus GRL', 'assets/img/theus.png')">
-                <img src="assets/img/theus.png" alt="Theus GRL">
-                <span>Theus GRL</span>
-            </div>
-
             <div class="user-card" onclick="selecionarUsuario(this, '<@1045892342156107816>', 'Nego Catra', 'assets/img/nego.png')">
                 <img src="assets/img/nego.png" alt="Nego Catra">
                 <span>Nego Catra</span>
             </div>
-
-
-            <div class="user-card" onclick="selecionarUsuario(this, '<@996100792186585149>', 'Derick Gomes', 'assets/img/derick.png')">
-                <img src="assets/img/derick.png" alt="Derick Gomes">
-                <span>Derick Gomes</span>
-            </div>
-
 
             <div class="user-card" onclick="selecionarUsuario(this, '<@874024297985888348>', 'Bily TheKid', 'assets/img/bily.png')">
                 <img src="assets/img/bily.png" alt="Bily TheKid">
@@ -1273,11 +1251,6 @@ input:disabled{
           <div class="user-card" onclick="selecionarUsuario(this, '<@913555595313942578>', 'Carlos Legion', 'assets/img/carlos.png')">
     <img src="assets/img/carlos.png" alt="Carlos Legion">
     <span>Carlos Legion</span>
-</div>
-
-<div class="user-card" onclick="selecionarUsuario(this, '<@613779263564546078>', 'Cruel costa', 'assets/img/cruel.png')">
-    <img src="assets/img/cruel.png" alt="cruel costa">
-    <span>Cruel costa</span>
 </div>
 
 <div class="user-card" onclick="selecionarUsuario(this, '<@701859793345970276>', 'Rebecca Urach', 'assets/img/rebecca.png')">
@@ -1290,15 +1263,14 @@ input:disabled{
     <span>JK VINTEDOIS FANTASMINHA DEMONIAO</span>
 </div>
 
-<div class="user-card" onclick="selecionarUsuario(this, '<@1477300878430965774>', 'ERICK RIGHT', 'assets/img/erick.png')">
-    <img src="assets/img/erick.png" alt="ERICK RIGHT">
-    <span>ERICK RIGHT</span>
+<div class="user-card" onclick="selecionarUsuario(this, '<@1508142885353291838>', 'jon finch', 'assets/img/jon.png')">
+    <img src="assets/img/jon.png" alt="jon finch">
+    <span>jon finch</span>
 </div>
 
-
-<div class="user-card" onclick="selecionarUsuario(this, '<@1269664657577349263>', 'Cafifa', 'assets/img/cafifa.png')">
-    <img src="assets/img/cafifa.png" alt="Cafifa">
-    <span>Cafifa</span>
+<div class="user-card" onclick="selecionarUsuario(this, '<@354438619651637249>', 'gustavo', 'assets/img/gustavo.png')">
+    <img src="assets/img/gustavo.png" alt="gustavo">
+    <span>gustavo</span>
 </div>
             
         </div>
@@ -1347,7 +1319,7 @@ input:disabled{
 
     <div id="tabLavagem" class="tab-content active">
         <input type="text" id="valor" placeholder="Digite o valor" oninput="formatarInput(this)">
-        <input type="text" id="nomeOrg" placeholder="Nome da fac / organização" oninput="verificarMotoclub()">
+        <input type="text" id="nomeOrg" placeholder="Nome da fac / organização" oninput="verificarSEMPARCERIAFORTE()">
 
         <div class="parceria-box">
             <span class="parceria-titulo">Tipo de parceria</span>
@@ -1367,7 +1339,7 @@ input:disabled{
                 </label>
 
                 <input type="radio" name="parceria" id="forte" value="forte">
-                <label for="forte" class="parceria-card forte" title="Somente parceria forte com Motoclub">
+                <label for="forte" class="parceria-card forte" title="Somente parceria forte com ???">
                     <span class="emoji">🔥</span>
                     <span>Forte</span>
                     <small>25%</small>
@@ -1497,15 +1469,13 @@ input:disabled{
         if(texto.includes("Nayumi")) return "assets/img/nayumi.png";
         if(texto.includes("Monnalisa")) return "assets/img/monalisa.png";
         if(texto.includes("camila")) return "assets/img/camila.png";
-        if(texto.includes("Ciri")) return "assets/img/ciri.png";
         if(texto.includes("Safira")) return "assets/img/safira.png";
-        if(texto.includes("Theus")) return "assets/img/theus.png";
         if(texto.includes("Nego")) return "assets/img/nego.png";
-        if(texto.includes("Derick")) return "assets/img/derick.png";
         if(texto.includes("Bily")) return "assets/img/bily.png";
         if(texto.includes("Carlos")) return "assets/img/carlos.png";
         if(texto.includes("Rebeca")) return "assets/img/rebecca.png";
-        if(texto.includes("Cruel")) return "assets/img/cruel.png";
+        if(texto.includes("Jon finch")) return "assets/img/jon.png";
+        if(texto.includes("Gustavo")) return "assets/img/gustavo.png";
         return "";
     }
     
@@ -1622,7 +1592,7 @@ input:disabled{
             .trim();
     }
 
-    function verificarMotoclub(){
+    function verificarSEMPARCERIAFORTE(){
         let nomeOrg = document.getElementById("nomeOrg");
         let textoOrg = normalizarTexto(nomeOrg.value);
 
@@ -1630,7 +1600,7 @@ input:disabled{
         let normal = document.getElementById("normal");
         let forte = document.getElementById("forte");
 
-        if(textoOrg === "motoclub"){
+        if(textoOrg === "SEM PARCERIA FORTE"){
             forte.checked = true;
 
             sem.disabled = true;
@@ -1644,7 +1614,7 @@ input:disabled{
     }
 
     function calc(){
-        verificarMotoclub();
+        verificarSEMPARCERIAFORTE();
 
         let valorDigitado = document.getElementById("valor").value;
         let nomeOrgInput = document.getElementById("nomeOrg");
@@ -1667,13 +1637,13 @@ input:disabled{
             return;
         }
 
-        if(nomeOrgNormalizado === "motoclub" && tipo !== "forte"){
-            mostrarToast("Motoclub é parceria forte 25%. Selecione a opção Forte", "error");
+        if(nomeOrgNormalizado === "SEM PARCERIA FORTE" && tipo !== "forte"){
+            mostrarToast("??? é parceria forte 25%. Selecione a opção Forte", "error");
             return;
         }
 
-        if(tipo === "forte" && nomeOrgNormalizado !== "motoclub"){
-            mostrarToast("Parceria forte 25% é somente com Motoclub","error");
+        if(tipo === "forte" && nomeOrgNormalizado !== "SEM PARCERIA FORTE"){
+            mostrarToast("Parceria forte 25% é somente com ???","error");
             return;
         }
 
@@ -1697,7 +1667,7 @@ input:disabled{
             taxaPainel = 0.10;
             descontoTotal = 0.25;
             tipoTexto = "forte";
-            nomeOrg = "Motoclub";
+            nomeOrg = "SEM PARCERIA FORTE";
         }
 
         let painel = v * taxaPainel;
@@ -1740,10 +1710,10 @@ depositado no painel: ${Math.floor(painel).toLocaleString('pt-BR')}`;
         if(!tipoSelecionado) return;
 
         if(tipoSelecionado.value === "forte" && normalizarTexto(nomeOrg.value) === ""){
-            nomeOrg.value = "Motoclub";
+            nomeOrg.value = "SEM PARCERIA FORTE";
         }
 
-        verificarMotoclub();
+        verificarSEMPARCERIAFORTE();
     }
 
     document.querySelectorAll('input[name="parceria"]').forEach(input => {
@@ -1840,13 +1810,13 @@ setTimeout(() => {
             return;
         }
 
-        if(nomeOrgNormalizado === "motoclub" && tipo !== "forte"){
-            mostrarToast("Motoclub é parceria forte 25%. Selecione a opção Forte.", "error");
+        if(nomeOrgNormalizado === "SEM PARCERIA FORTE" && tipo !== "forte"){
+            mostrarToast("??? é parceria forte 25%. Selecione a opção Forte.", "error");
             return;
         }
 
-        if(tipo === "forte" && nomeOrgNormalizado !== "motoclub"){
-            mostrarToast("Parceria forte 25% é somente com Motoclub.", "error");
+        if(tipo === "forte" && nomeOrgNormalizado !== "SEM PARCERIA FORTE"){
+            mostrarToast("Parceria forte 25% é somente com ???.", "error");
             return;
         }
 
@@ -1870,7 +1840,7 @@ setTimeout(() => {
             taxaPainel = 0.10;
             descontoTotal = 0.25;
             parceria = "Forte";
-            nomeOrg = "Motoclub";
+            nomeOrg = "SEM PARCERIA FORTE";
         }
 
         let painel = v * taxaPainel;
