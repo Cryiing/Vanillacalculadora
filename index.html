@@ -1319,7 +1319,7 @@ input:disabled{
 
     <div id="tabLavagem" class="tab-content active">
         <input type="text" id="valor" placeholder="Digite o valor" oninput="formatarInput(this)">
-        <input type="text" id="nomeOrg" placeholder="Nome da fac / organização" oninput="verificarSEMPARCERIAFORTE()">
+        <input type="text" id="nomeOrg" placeholder="Nome da fac / organização" oninput="verificarmembro()">
 
         <div class="parceria-box">
             <span class="parceria-titulo">Tipo de parceria</span>
@@ -1339,7 +1339,7 @@ input:disabled{
                 </label>
 
                 <input type="radio" name="parceria" id="forte" value="forte">
-                <label for="forte" class="parceria-card forte" title="Somente parceria forte com ???">
+                <label for="forte" class="parceria-card forte" title="Somente parceria forte com membro">
                     <span class="emoji">🔥</span>
                     <span>Forte</span>
                     <small>25%</small>
@@ -1592,7 +1592,7 @@ input:disabled{
             .trim();
     }
 
-    function verificarSEMPARCERIAFORTE(){
+    function verificarmembro(){
         let nomeOrg = document.getElementById("nomeOrg");
         let textoOrg = normalizarTexto(nomeOrg.value);
 
@@ -1600,7 +1600,7 @@ input:disabled{
         let normal = document.getElementById("normal");
         let forte = document.getElementById("forte");
 
-        if(textoOrg === "SEM PARCERIA FORTE"){
+        if(textoOrg === "membro"){
             forte.checked = true;
 
             sem.disabled = true;
@@ -1614,7 +1614,7 @@ input:disabled{
     }
 
     function calc(){
-        verificarSEMPARCERIAFORTE();
+        verificarmembro();
 
         let valorDigitado = document.getElementById("valor").value;
         let nomeOrgInput = document.getElementById("nomeOrg");
@@ -1637,13 +1637,13 @@ input:disabled{
             return;
         }
 
-        if(nomeOrgNormalizado === "SEM PARCERIA FORTE" && tipo !== "forte"){
-            mostrarToast("??? é parceria forte 25%. Selecione a opção Forte", "error");
+        if(nomeOrgNormalizado === "membro" && tipo !== "forte"){
+            mostrarToast("membro é parceria forte 25%. Selecione a opção Forte", "error");
             return;
         }
 
-        if(tipo === "forte" && nomeOrgNormalizado !== "SEM PARCERIA FORTE"){
-            mostrarToast("Parceria forte 25% é somente com ???","error");
+        if(tipo === "forte" && nomeOrgNormalizado !== "membro"){
+            mostrarToast("Parceria forte 25% é somente com membro","error");
             return;
         }
 
@@ -1667,7 +1667,7 @@ input:disabled{
             taxaPainel = 0.10;
             descontoTotal = 0.25;
             tipoTexto = "forte";
-            nomeOrg = "SEM PARCERIA FORTE";
+            nomeOrg = "membro";
         }
 
         let painel = v * taxaPainel;
@@ -1710,10 +1710,10 @@ depositado no painel: ${Math.floor(painel).toLocaleString('pt-BR')}`;
         if(!tipoSelecionado) return;
 
         if(tipoSelecionado.value === "forte" && normalizarTexto(nomeOrg.value) === ""){
-            nomeOrg.value = "SEM PARCERIA FORTE";
+            nomeOrg.value = "membro";
         }
 
-        verificarSEMPARCERIAFORTE();
+        verificarmembro();
     }
 
     document.querySelectorAll('input[name="parceria"]').forEach(input => {
@@ -1810,13 +1810,13 @@ setTimeout(() => {
             return;
         }
 
-        if(nomeOrgNormalizado === "SEM PARCERIA FORTE" && tipo !== "forte"){
-            mostrarToast("??? é parceria forte 25%. Selecione a opção Forte.", "error");
+        if(nomeOrgNormalizado === "membro" && tipo !== "forte"){
+            mostrarToast("membro é parceria forte 25%. Selecione a opção Forte.", "error");
             return;
         }
 
-        if(tipo === "forte" && nomeOrgNormalizado !== "SEM PARCERIA FORTE"){
-            mostrarToast("Parceria forte 25% é somente com ???.", "error");
+        if(tipo === "forte" && nomeOrgNormalizado !== "membro"){
+            mostrarToast("Parceria forte 25% é somente com membro.", "error");
             return;
         }
 
@@ -1840,7 +1840,7 @@ setTimeout(() => {
             taxaPainel = 0.10;
             descontoTotal = 0.25;
             parceria = "Forte";
-            nomeOrg = "SEM PARCERIA FORTE";
+            nomeOrg = "membro";
         }
 
         let painel = v * taxaPainel;
