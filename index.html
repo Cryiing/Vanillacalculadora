@@ -256,13 +256,6 @@ body::before{
     }
 }
 
-..active{
-    border-color:#ff2a2a;
-    background:linear-gradient(180deg, #2b1414, #1f1111);
-    box-shadow:
-        0 0 14px rgba(255,0,0,0.28),
-        inset 0 0 0 1px rgba(255,0,0,0.12);
-}
 
 .avatar-preview-wrap{
     display:none;
@@ -772,7 +765,7 @@ textarea{
 /* GRID */
 .parceria-grid{
     display:grid;
-    grid-template-columns:repeat(3, 1fr);
+    grid-template-columns:repeat(2, 1fr);
     gap:10px;
 }
 
@@ -1173,6 +1166,35 @@ input:disabled{
         box-shadow:0 0 18px rgba(255,0,0,.45);
     }
 }    
+
+.simple-login-fields{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    width:100%;
+    margin-top:8px;
+}
+
+.simple-login-fields input{
+    width:100%;
+    height:48px;
+    border:none;
+    border-radius:10px;
+    background:#222;
+    color:#fff;
+    padding:0 14px;
+    box-sizing:border-box;
+    font-size:16px;
+    text-align:left;
+    outline:none;
+    border:1px solid rgba(255,255,255,0.06);
+}
+
+.simple-login-fields input:focus{
+    border-color:#ff2a2a;
+    box-shadow:0 0 12px rgba(255,0,0,0.28);
+}
+
 </style>
 </head>
 
@@ -1184,7 +1206,7 @@ input:disabled{
 <div class="toast-container" id="toastContainer"></div>
 <div id="loadingScreen" class="loading-screen">
     <div class="loading-content">
-        <video class="loading-logo-video" autoplay muted playsinline>
+        <video class="loading-logo-video" autoplay muted loop playsinline poster="assets/img/logo.png">
             <source src="assets/video/logo.mp4" type="video/mp4">
         </video>
 
@@ -1204,89 +1226,23 @@ input:disabled{
 <div class="overlay" id="loginScreen">
     <div class="login-box">
         <h3>
-            <video class="logo-video" autoplay muted loop playsinline>
+            <video class="logo-video" autoplay muted loop playsinline poster="assets/img/logo.png">
                 <source src="assets/video/logo.mp4" type="video/mp4">
             </video>
             Sinaloa
         </h3>
 
-        <div class="login-label">Selecione seu nome</div>
+        <div class="login-label">Identificação</div>
 
-        <div class="users-grid">
-
-            <div class="user-card" onclick="selecionarUsuario(this, '<@712145355671601153>', 'Monnalisa Urach', 'assets/img/monalisa.png')">
-                <img src="assets/img/monalisa.png" alt="Monnalisa Urach">
-                <span>Monnalisa Urach</span>
-            </div>
-
-            <div class="user-card" onclick="selecionarUsuario(this, '<@1210995879968903229>', 'camila nascimento', 'assets/img/camila.png')">
-                <img src="assets/img/camila.png" alt="camila nascimento">
-                <span>camila nascimento</span>
-            </div>
-
-            <div class="user-card" onclick="selecionarUsuario(this, '<@340298478494154752>', 'Viktoria Modesta', 'assets/img/vik.png')">
-                <img src="assets/img/vik.png" alt="Viktoria Modesta">
-                <span>Viktoria Modesta</span>
-            </div>
-
-            <div class="user-card" onclick="selecionarUsuario(this, '<@1410099983830614026>', 'Nayumi ferraz', 'assets/img/nayumi.png')">
-                <img src="assets/img/nayumi.png" alt="Nayumi ferraz">
-                <span>Nayumi ferraz</span>
-            </div>
-
-            <div class="user-card" onclick="selecionarUsuario(this, '<@466849832238055435>', 'Safira Yagami', 'assets/img/safira.png')">
-                <img src="assets/img/safira.png" alt="Safira Yagami">
-                <span>Safira Yagami</span>
-            </div>
-
-            <div class="user-card" onclick="selecionarUsuario(this, '<@1045892342156107816>', 'Nego Catra', 'assets/img/nego.png')">
-                <img src="assets/img/nego.png" alt="Nego Catra">
-                <span>Nego Catra</span>
-            </div>
-
-            <div class="user-card" onclick="selecionarUsuario(this, '<@874024297985888348>', 'Bily TheKid', 'assets/img/bily.png')">
-                <img src="assets/img/bily.png" alt="Bily TheKid">
-                <span>Bily TheKid</span>
-            </div>
-          <div class="user-card" onclick="selecionarUsuario(this, '<@913555595313942578>', 'Carlos Legion', 'assets/img/carlos.png')">
-    <img src="assets/img/carlos.png" alt="Carlos Legion">
-    <span>Carlos Legion</span>
-</div>
-
-<div class="user-card" onclick="selecionarUsuario(this, '<@701859793345970276>', 'Rebecca Urach', 'assets/img/rebecca.png')">
-    <img src="assets/img/rebecca.png" alt="Rebecca Urach">
-    <span>Rebecca Urach</span>
-</div>
-
-<div class="user-card" onclick="selecionarUsuario(this, '<@1107804438682406915>', 'JK VINTEDOIS FANTASMINHA DEMONIAO', 'assets/img/jk.png')">
-    <img src="assets/img/jk.png" alt="JK VINTEDOIS FANTASMINHA DEMONIAO">
-    <span>JK VINTEDOIS FANTASMINHA DEMONIAO</span>
-</div>
-
-<div class="user-card" onclick="selecionarUsuario(this, '<@1508142885353291838>', 'jon finch', 'assets/img/jon.png')">
-    <img src="assets/img/jon.png" alt="jon finch">
-    <span>jon finch</span>
-</div>
-
-<div class="user-card" onclick="selecionarUsuario(this, '<@354438619651637249>', 'gustavo', 'assets/img/gustavo.png')">
-    <img src="assets/img/gustavo.png" alt="gustavo">
-    <span>gustavo</span>
-</div>
-            
+        <div class="simple-login-fields">
+            <input type="text" id="loginNome" placeholder="Nome do personagem">
+            <input type="text" id="loginDiscord" placeholder="ID do Discord" inputmode="numeric">
         </div>
 
-        <div class="avatar-preview-wrap">
-            <img id="avatarPreview" class="avatar-preview" src="" alt="Avatar">
-        </div>
+        <div class="login-actions">
 
-      <div class="login-actions">
-
-    <button onclick="fazerLogin()">
+    <button id="loginBtn" onclick="fazerLogin()">
         <img src="assets/img/entrar.png" class="icon">Entrar
-    </button>
-
-    <button class="register-btn" onclick="abrirPopupRegistro()">
-        <img src="assets/img/registro.png" class="icon">Registrar
     </button>
 
     <button class="support-btn" onclick="abrirPopupSuporte()">
@@ -1300,7 +1256,7 @@ input:disabled{
 <div class="container" id="app">
     <div class="header">
         <div class="header-left">
-            <video class="logo-video" autoplay muted loop playsinline>
+            <video class="logo-video" autoplay muted loop playsinline poster="assets/img/logo.png">
                 <source src="assets/video/logo.mp4" type="video/mp4">
             </video>
             <strong>Lavagem</strong>
@@ -1318,39 +1274,32 @@ input:disabled{
     </div>
 
     <div id="tabLavagem" class="tab-content active">
-        <input type="text" id="valor" placeholder="Digite o valor" oninput="formatarInput(this)">
-        <input type="text" id="nomeOrg" placeholder="Nome da fac / organização" oninput="verificarmembro()">
-
-        <div class="parceria-box">
+        <input type="text" id="valor" placeholder="Digite o valor" oninput="formatarInput(this); marcarLavagemComoPendente()">
+<div class="parceria-box">
             <span class="parceria-titulo">Tipo de parceria</span>
         
             <div class="parceria-grid">
-                <input type="radio" name="parceria" id="sem" value="sem">
+                <input type="radio" name="parceria" id="sem" value="sem" checked>
                 <label for="sem" class="parceria-card">
                     <span class="emoji">❌</span>
                     <span>Sem parceria</span>
-                </label>
-
-                <input type="radio" name="parceria" id="normal" value="normal" checked>
-                <label for="normal" class="parceria-card">
-                    <span class="emoji">🤝</span>
-                    <span>Normal</span>
                     <small>30%</small>
                 </label>
 
-                <input type="radio" name="parceria" id="forte" value="forte">
-                <label for="forte" class="parceria-card forte" title="Somente parceria forte com membro">
-                    <span class="emoji">🔥</span>
-                    <span>Forte</span>
+                <input type="radio" name="parceria" id="normal" value="normal">
+                <label for="normal" class="parceria-card">
+                    <span class="emoji">🤝</span>
+                    <span>Com parceria</span>
                     <small>25%</small>
-                </label>            </div>
+                </label>
+            </div>
         </div>
 
         <button onclick="calc()">Calcular</button>
 
         <div id="resultado"></div>
 
-        <button class="discord-btn" onclick="enviarWebhook()">
+        <button id="registrarLavagemBtn" class="discord-btn" onclick="enviarWebhook()">
         <img src="assets/img/discord.png" class="icon">Registrar lavagem
         </button>
     </div>
@@ -1444,77 +1393,68 @@ input:disabled{
         </div>
     </div>
 </div>
-<div id="registerModal" class="register-modal">
-    <div class="register-content">
-        <h3>Registrar membro</h3>
-
-        <input type="text" id="registroNome" placeholder="Nome do personagem">
-        <input type="text" id="registroDiscord" placeholder="ID do Discord">
-        <input type="file" id="registroFoto" accept="image/*">
-
-        <button onclick="enviarRegistroMembro()">Enviar registro</button>
-        <button class="register-close" onclick="fecharPopupRegistro()">Cancelar</button>
-    </div>
-</div> 
 <div class="watermark">Gaby/Cry & Viktoria</div>
 
 <script>
     let usuarioSelecionado = null;
     let usuarioTexto = null;
     let usuarioAvatar = null;
-    
-    function obterAvatarPorTexto(texto){
-        if(texto.includes("Gabriella") || texto.includes("Gaby")) return "assets/img/gaby.png";
-        if(texto.includes("Viktoria")) return "assets/img/vik.png";
-        if(texto.includes("Nayumi")) return "assets/img/nayumi.png";
-        if(texto.includes("Monnalisa")) return "assets/img/monalisa.png";
-        if(texto.includes("camila")) return "assets/img/camila.png";
-        if(texto.includes("Safira")) return "assets/img/safira.png";
-        if(texto.includes("Nego")) return "assets/img/nego.png";
-        if(texto.includes("Bily")) return "assets/img/bily.png";
-        if(texto.includes("Carlos")) return "assets/img/carlos.png";
-        if(texto.includes("Rebeca")) return "assets/img/rebecca.png";
-        if(texto.includes("Jon finch")) return "assets/img/jon.png";
-        if(texto.includes("Gustavo")) return "assets/img/gustavo.png";
-        return "";
-    }
-    
-    function selecionarUsuario(el, id, nome, avatar){
-        document.querySelectorAll('.user-card').forEach(card => card.classList.remove('active'));
-        el.classList.add('active');
-    
-        usuarioSelecionado = id;
-        usuarioTexto = nome;
-        usuarioAvatar = avatar;
-    
-        let img = document.getElementById("avatarPreview");
-        img.src = avatar;
-        img.style.display = "block";
-    }
-    
-    function marcarCardSalvo(texto){
-        const cards = document.querySelectorAll('.user-card');
-        cards.forEach(card => {
-            const nomeCard = card.querySelector('span').innerText.trim();
-            card.classList.toggle('active', nomeCard === texto);
-        });
-    }
-    
-    function aplicarAvatarTopo(texto){
-        console.log("Avatar atual:", usuarioAvatar);
-        console.log("LocalStorage:", localStorage.getItem("loginAvatar"));
-        let top = document.getElementById("avatarTop");
-        let avatar = usuarioAvatar || obterAvatarPorTexto(texto);
-    
-        if(avatar){
-            top.src = avatar;
-            top.style.display = "block";
-        } else {
-            top.style.display = "none";
-            top.src = "";
+    let lavagemCalculada = false;
+    let lavagemEnviando = false;
+
+    const PARCERIAS = {
+        sem: {
+            taxaPainel: 0.15,
+            descontoTotal: 0.30,
+            nome: "Sem parceria"
+        },
+        normal: {
+            taxaPainel: 0.10,
+            descontoTotal: 0.25,
+            nome: "Com parceria"
         }
+    };
+
+    function obterDadosParceria(tipo){
+        return PARCERIAS[tipo] || null;
+    }
+
+    function marcarLavagemComoPendente(){
+        lavagemCalculada = false;
+    }
+
+    function escaparHTML(texto){
+        const div = document.createElement("div");
+        div.textContent = String(texto ?? "");
+        return div.innerHTML;
+    }
+
+    function escaparAspasJS(texto){
+        return String(texto ?? "")
+            .replace(/\\/g, "\\\\")
+            .replace(/'/g, "\\'")
+            .replace(/"/g, "&quot;");
+    }
+
+    function limparFormularioLavagem(){
+        document.getElementById("valor").value = "";
+        document.getElementById("resultado").innerHTML = "";
+        document.getElementById("sem").checked = true;
+        lavagemCalculada = false;
+    }
+
+    function definirBotaoCarregando(botao, carregando, textoCarregando, htmlOriginal){
+        if(!botao) return;
+        botao.disabled = carregando;
+        botao.innerHTML = carregando ? textoCarregando : htmlOriginal;
     }
     
+    function aplicarAvatarTopo(){
+        const top = document.getElementById("avatarTop");
+        top.style.display = "none";
+        top.src = "";
+    }
+
     function mostrarAba(aba){
         document.getElementById("tabLavagem").classList.remove("active");
         document.getElementById("tabTabela").classList.remove("active");
@@ -1549,25 +1489,42 @@ input:disabled{
     }
     
     function fazerLogin(){
-        if(!usuarioSelecionado || !usuarioTexto) return;
-    
+        const nome = document.getElementById("loginNome").value.trim();
+        const discordId = document.getElementById("loginDiscord").value.replace(/\D/g, "");
+
+        if(!nome){
+            mostrarToast("Digite o nome do personagem.", "error");
+            return;
+        }
+
+        if(!/^\d{17,20}$/.test(discordId)){
+            mostrarToast("Digite um ID válido do Discord.", "error");
+            return;
+        }
+
+        usuarioTexto = nome;
+        usuarioSelecionado = `<@${discordId}>`;
+        usuarioAvatar = "";
+
         localStorage.setItem("loginSalvo", usuarioSelecionado);
         localStorage.setItem("loginTexto", usuarioTexto);
-        localStorage.setItem("loginAvatar", usuarioAvatar || "");
-    
+        localStorage.setItem("loginDiscordId", discordId);
+
         document.getElementById("loginScreen").style.display = "none";
         document.getElementById("app").style.display = "block";
-    
-        aplicarAvatarTopo(usuarioTexto);
-        mostrarAba('lavagem');
-        atualizarOrgPorParceria();
+
+        aplicarAvatarTopo();
+        mostrarAba("lavagem");
     }
-    
+
     function logout(){
-        localStorage.clear();
+        localStorage.removeItem("loginSalvo");
+        localStorage.removeItem("loginTexto");
+        localStorage.removeItem("loginAvatar");
+        localStorage.removeItem("loginDiscordId");
         location.reload();
     }
-    
+
     function abrirPopupSuporte(){
         document.getElementById("supportModal").classList.add("active");
     }
@@ -1592,132 +1549,81 @@ input:disabled{
             .trim();
     }
 
-    function verificarmembro(){
-        let nomeOrg = document.getElementById("nomeOrg");
-        let textoOrg = normalizarTexto(nomeOrg.value);
+    function validarDadosLavagem(){
+        const valorDigitado = document.getElementById("valor").value;
+        const valor = parseFloat(valorDigitado.replace(/\./g, "")) || 0;
+        const tipoSelecionado = document.querySelector('input[name="parceria"]:checked');
 
-        let sem = document.getElementById("sem");
-        let normal = document.getElementById("normal");
-        let forte = document.getElementById("forte");
-
-        if(textoOrg === "membro"){
-            forte.checked = true;
-
-            sem.disabled = true;
-            normal.disabled = true;
-            forte.disabled = false;
-        } else {
-            sem.disabled = false;
-            normal.disabled = false;
-            forte.disabled = false;
+        if(valor <= 0){
+            mostrarToast("Digite um valor válido.", "error");
+            return null;
         }
+
+        if(!tipoSelecionado){
+            mostrarToast("Selecione o tipo de parceria.", "error");
+            return null;
+        }
+
+        const tipo = tipoSelecionado.value;
+        const dadosParceria = obterDadosParceria(tipo);
+
+        if(!dadosParceria){
+            mostrarToast("Tipo de parceria inválido.", "error");
+            return null;
+        }
+
+        const painel = valor * dadosParceria.taxaPainel;
+        const final = valor - (valor * dadosParceria.descontoTotal);
+        const taxaTotal = valor * dadosParceria.descontoTotal;
+
+        return {
+            valor,
+            tipo,
+            parceria: dadosParceria.nome,
+            taxaPainel: dadosParceria.taxaPainel,
+            descontoTotal: dadosParceria.descontoTotal,
+            painel,
+            final,
+            taxaTotal
+        };
     }
 
     function calc(){
-        verificarmembro();
+        const dados = validarDadosLavagem();
+        if(!dados) return null;
 
-        let valorDigitado = document.getElementById("valor").value;
-        let nomeOrgInput = document.getElementById("nomeOrg");
-        let nomeOrgValor = nomeOrgInput.value;
-        let nomeOrg = nomeOrgValor || "Não informado";
-        let nomeOrgNormalizado = normalizarTexto(nomeOrgValor);
-        let v = parseFloat(valorDigitado.replace(/\./g,'')) || 0;
-
-        let tipoSelecionado = document.querySelector('input[name="parceria"]:checked');
-
-        if(!tipoSelecionado){
-            mostrarToast("Selecione o tipo de parceria", "error");
-            return;
-        }
-
-        let tipo = tipoSelecionado.value;
-
-        if((tipo === "normal" || tipo === "forte") && nomeOrgNormalizado === ""){
-            mostrarToast("Digite o nome da facção/parceria.", "error");
-            return;
-        }
-
-        if(nomeOrgNormalizado === "membro" && tipo !== "forte"){
-            mostrarToast("membro é parceria forte 25%. Selecione a opção Forte", "error");
-            return;
-        }
-
-        if(tipo === "forte" && nomeOrgNormalizado !== "membro"){
-            mostrarToast("Parceria forte 25% é somente com membro","error");
-            return;
-        }
-
-        let taxaPainel = 0;
-        let descontoTotal = 0;
-        let tipoTexto = "";
-
-        if(tipo === "sem"){
-            taxaPainel = 0.25;
-            descontoTotal = 0.40;
-            tipoTexto = "sem parceria";
-        }
-
-        if(tipo === "normal"){
-            taxaPainel = 0.15;
-            descontoTotal = 0.30;
-            tipoTexto = "normal";
-        }
-
-        if(tipo === "forte"){
-            taxaPainel = 0.10;
-            descontoTotal = 0.25;
-            tipoTexto = "forte";
-            nomeOrg = "membro";
-        }
-
-        let painel = v * taxaPainel;
-        let final = v - (v * descontoTotal);
-        let porcentagemPainel = taxaPainel * 100;
-        let porcentagemDesconto = descontoTotal * 100;
-        let porcentagemEntregar = 100 - porcentagemDesconto;
+        const porcentagemPainel = dados.taxaPainel * 100;
+        const porcentagemDesconto = dados.descontoTotal * 100;
+        const porcentagemEntregar = 100 - porcentagemDesconto;
 
         document.getElementById("resultado").innerHTML = `
             <div class="result-card">
                 <span><img src="assets/img/money.png" class="icon">Valor</span>
-                <strong>${Math.floor(v).toLocaleString('pt-BR')}</strong>
+                <strong>${Math.floor(dados.valor).toLocaleString("pt-BR")}</strong>
             </div>
 
             <div class="result-card">
                 <span><img src="assets/img/deposit.png" class="icon">Depositar no painel (${porcentagemPainel}%)</span>
-                <strong>${Math.floor(painel).toLocaleString('pt-BR')}</strong>
+                <strong>${Math.floor(dados.painel).toLocaleString("pt-BR")}</strong>
+            </div>
+
+            <div class="result-card">
+                <span><img src="assets/img/money.png" class="icon">Taxa total (${porcentagemDesconto}%)</span>
+                <strong>${Math.floor(dados.taxaTotal).toLocaleString("pt-BR")}</strong>
             </div>
 
             <div class="result-card highlight">
                 <span><img src="assets/img/send.png" class="icon">Entregar (${porcentagemEntregar}%)</span>
-                <strong>${Math.floor(final).toLocaleString('pt-BR')}</strong>
+                <strong>${Math.floor(dados.final).toLocaleString("pt-BR")}</strong>
             </div>
         `;
 
-        let texto =
-`Quem lavou: ${usuarioSelecionado}
-valor: ${Math.floor(v).toLocaleString('pt-BR')}
-nome da org: ${nomeOrg}
-Parceria: ${tipoTexto}
-depositado no painel: ${Math.floor(painel).toLocaleString('pt-BR')}`;
-
-    
-    }
-
-    function atualizarOrgPorParceria(){
-        let tipoSelecionado = document.querySelector('input[name="parceria"]:checked');
-        let nomeOrg = document.getElementById("nomeOrg");
-
-        if(!tipoSelecionado) return;
-
-        if(tipoSelecionado.value === "forte" && normalizarTexto(nomeOrg.value) === ""){
-            nomeOrg.value = "membro";
-        }
-
-        verificarmembro();
+        lavagemCalculada = true;
+        return dados;
     }
 
     document.querySelectorAll('input[name="parceria"]').forEach(input => {
-        input.addEventListener("change", atualizarOrgPorParceria);
+        input.addEventListener("change", marcarLavagemComoPendente);
     });
 
    
@@ -1732,29 +1638,23 @@ depositado no painel: ${Math.floor(painel).toLocaleString('pt-BR')}`;
     });
     
     window.onload = function(){
-        let loginSalvo = localStorage.getItem("loginSalvo");
-        let loginTexto = localStorage.getItem("loginTexto");
-        let loginAvatar = localStorage.getItem("loginAvatar");
-    
-        if(loginSalvo && loginTexto){
+        const loginSalvo = localStorage.getItem("loginSalvo");
+        const loginTexto = localStorage.getItem("loginTexto");
+        const loginDiscordId = localStorage.getItem("loginDiscordId");
+
+        if(loginSalvo && loginTexto && loginDiscordId){
             usuarioSelecionado = loginSalvo;
             usuarioTexto = loginTexto;
-            usuarioAvatar = loginAvatar || obterAvatarPorTexto(loginTexto);
-    
-            let preview = document.getElementById("avatarPreview");
-            if(usuarioAvatar){
-                preview.src = usuarioAvatar;
-                preview.style.display = "block";
-            }
-    
-            marcarCardSalvo(loginTexto);
-    
+            usuarioAvatar = "";
+
+            document.getElementById("loginNome").value = loginTexto;
+            document.getElementById("loginDiscord").value = loginDiscordId;
+
             document.getElementById("loginScreen").style.display = "none";
             document.getElementById("app").style.display = "block";
-    
-            aplicarAvatarTopo(loginTexto);
-            mostrarAba('lavagem');
-            atualizarOrgPorParceria();
+
+            aplicarAvatarTopo();
+            mostrarAba("lavagem");
         }
     };
 
@@ -1775,141 +1675,105 @@ setTimeout(() => {
     }
 }, 3500);
     async function enviarWebhook(){
+        if(lavagemEnviando){
+            mostrarToast("Aguarde, a lavagem já está sendo registrada.", "error");
+            return;
+        }
+
         const cooldownTempo = 30000;
         const ultimoEnvio = localStorage.getItem("ultimoEnvioLavagem");
         const agora = Date.now();
 
         if(ultimoEnvio && agora - ultimoEnvio < cooldownTempo){
-            let segundosRestantes = Math.ceil((cooldownTempo - (agora - ultimoEnvio)) / 1000);
+            const segundosRestantes = Math.ceil((cooldownTempo - (agora - ultimoEnvio)) / 1000);
             mostrarToast(`Aguarde ${segundosRestantes} segundos para registrar outra lavagem.`, "error");
             return;
         }
 
-        let valorDigitado = document.getElementById("valor").value;
-        let nomeOrgValor = document.getElementById("nomeOrg").value;
-        let nomeOrg = nomeOrgValor || "Não informado";
-        let nomeOrgNormalizado = normalizarTexto(nomeOrgValor);
-        let v = parseFloat(valorDigitado.replace(/\./g,'')) || 0;
-
-        if(v <= 0){
-            mostrarToast("Digite um valor antes de registrar.", "error");
+        if(!lavagemCalculada){
+            mostrarToast("Calcule a lavagem antes de registrar.", "error");
             return;
         }
 
-        let tipoSelecionado = document.querySelector('input[name="parceria"]:checked');
+        const dados = validarDadosLavagem();
+        if(!dados) return;
 
-        if(!tipoSelecionado){
-            mostrarToast("Selecione o tipo de parceria.", "error");
-            return;
-        }
+        const confirmar = window.confirm(
+            `Confirmar lavagem de ${Math.floor(dados.valor).toLocaleString("pt-BR")} (${dados.parceria})?`
+        );
 
-        let tipo = tipoSelecionado.value;
-
-        if((tipo === "normal" || tipo === "forte") && nomeOrgNormalizado === ""){
-            mostrarToast("Digite o nome da facção/parceria.", "error");
-            return;
-        }
-
-        if(nomeOrgNormalizado === "membro" && tipo !== "forte"){
-            mostrarToast("membro é parceria forte 25%. Selecione a opção Forte.", "error");
-            return;
-        }
-
-        if(tipo === "forte" && nomeOrgNormalizado !== "membro"){
-            mostrarToast("Parceria forte 25% é somente com membro.", "error");
-            return;
-        }
-
-        let taxaPainel = 0;
-        let descontoTotal = 0;
-        let parceria = "Sem parceria";
-
-        if(tipo === "sem"){
-            taxaPainel = 0.25;
-            descontoTotal = 0.40;
-            parceria = "Sem parceria";
-        }
-
-        if(tipo === "normal"){
-            taxaPainel = 0.15;
-            descontoTotal = 0.30;
-            parceria = "Normal";
-        }
-
-        if(tipo === "forte"){
-            taxaPainel = 0.10;
-            descontoTotal = 0.25;
-            parceria = "Forte";
-            nomeOrg = "membro";
-        }
-
-        let painel = v * taxaPainel;
-        let final = v - (v * descontoTotal);
-
-        calc();
+        if(!confirmar) return;
 
         const webhookURL = "https://discord.com/api/webhooks/1501639905129009252/gvT8G4c8Cjsbgs5fVpRsrT6G7evrWf_b9C4Z11mZR42G3nxK8f7j5EQTR6-3Bn2KgYhw";
+        const botao = document.getElementById("registrarLavagemBtn");
+        const htmlOriginal = '<img src="assets/img/discord.png" class="icon">Registrar lavagem';
 
-        if(webhookURL === "COLE_SEU_WEBHOOK_AQUI"){
-            mostrarToast("Cole o webhook novo no código antes de usar.", "error");
-            return;
-        }
+        lavagemEnviando = true;
+        definirBotaoCarregando(botao, true, "Registrando...", htmlOriginal);
 
         try{
-            await fetch(webhookURL, {
-                method:"POST",
-                headers:{
-                    "Content-Type":"application/json"
+            const resposta = await fetch(webhookURL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
                 },
-                body:JSON.stringify({
-                    username:"Vanilla Hub",
-                    embeds:[{
-                        title:"💸 Nova Lavagem",
-                        color:16711680,
-                        fields:[
+                body: JSON.stringify({
+                    username: "Vanilla Hub",
+                    embeds: [{
+                        title: "💸 Nova Lavagem",
+                        color: 16711680,
+                        fields: [
                             {
-                                name:"👤 Quem lavou",
-                                value:usuarioSelecionado || "Não informado",
-                                inline:false
+                                name: "👤 Quem lavou",
+                                value: `${usuarioTexto || "Não informado"}\n${usuarioSelecionado || "Não informado"}`,
+                                inline: false
                             },
                             {
-                                name:"💰 Valor",
-                                value:Math.floor(v).toLocaleString('pt-BR'),
-                                inline:true
+                                name: "💰 Valor",
+                                value: Math.floor(dados.valor).toLocaleString("pt-BR"),
+                                inline: true
                             },
                             {
-                                name:"🏢 Organização",
-                                value:nomeOrg,
-                                inline:true
+                                name: "🤝 Tipo",
+                                value: dados.parceria,
+                                inline: true
                             },
                             {
-                                name:"🤝 Parceria",
-                                value:parceria,
-                                inline:true
+                                name: "🏦 Depositado no painel",
+                                value: Math.floor(dados.painel).toLocaleString("pt-BR"),
+                                inline: false
                             },
                             {
-                                name:"🏦 Depositado no painel",
-                                value:Math.floor(painel).toLocaleString('pt-BR'),
-                                inline:false
-                            },
-                           
+                                name: "📤 Valor entregue",
+                                value: Math.floor(dados.final).toLocaleString("pt-BR"),
+                                inline: false
+                            }
                         ],
-                        footer:{
-                            text:"Vanilla Hub"
+                        footer: {
+                            text: "Vanilla Hub"
                         },
-                        timestamp:new Date()
+                        timestamp: new Date().toISOString()
                     }]
                 })
             });
 
-            localStorage.setItem("ultimoEnvioLavagem", agora);
+            if(!resposta.ok){
+                throw new Error(`Discord respondeu com status ${resposta.status}`);
+            }
+
+            localStorage.setItem("ultimoEnvioLavagem", String(agora));
             mostrarToast("✓ Lavagem registrada!");
+            limparFormularioLavagem();
 
         }catch(err){
             console.error(err);
-            mostrarToast("Erro ao enviar.", "error");
+            mostrarToast("Erro ao enviar a lavagem.", "error");
+        }finally{
+            lavagemEnviando = false;
+            definirBotaoCarregando(botao, false, "Registrando...", htmlOriginal);
         }
     }
+
     function mostrarToast(mensagem, tipo = "success"){
 
     const container = document.getElementById("toastContainer");
@@ -1932,111 +1796,6 @@ setTimeout(() => {
 
     }, 3000);
 }
-    function abrirPopupRegistro(){
-    document.getElementById("registerModal").classList.add("active");
-}
-
-function fecharPopupRegistro(){
-    document.getElementById("registerModal").classList.remove("active");
-}
-
-let registroEnviando = false;
-
-async function enviarRegistroMembro(){
-    if(registroEnviando){
-        mostrarToast("Aguarde, o registro já está sendo enviado.", "error");
-        return;
-    }
-
-    const cooldownRegistro = 60000;
-    const ultimoRegistro = localStorage.getItem("ultimoRegistroMembro");
-    const agora = Date.now();
-
-    if(ultimoRegistro && agora - ultimoRegistro < cooldownRegistro){
-        let segundosRestantes = Math.ceil((cooldownRegistro - (agora - ultimoRegistro)) / 1000);
-        mostrarToast(`Aguarde ${segundosRestantes} segundos para enviar outro registro.`, "error");
-        return;
-    }
-
-    let nome = document.getElementById("registroNome").value.trim();
-    let discordId = document.getElementById("registroDiscord").value.trim();
-    let foto = document.getElementById("registroFoto").files[0];
-
-    if(!nome){
-        mostrarToast("Digite o nome do personagem.", "error");
-        return;
-    }
-
-    if(!discordId){
-        mostrarToast("Digite o ID do Discord.", "error");
-        return;
-    }
-
-    if(!foto){
-        mostrarToast("Selecione a foto do personagem.", "error");
-        return;
-    }
-
-    registroEnviando = true;
-
-    const webhookRegistro = "https://discord.com/api/webhooks/1501937517061083137/bKSD3jlns7z0ZNAZ7XjPSObUDIBPLA2mYdGrBNV2tFdl00YCOrlDtMQTpeRQfnPTvljg";
-
-    const primeiroNome = nome
-        .split(" ")[0]
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "");
-
-    const codigoHTML =
-`<div class="user-card" onclick="selecionarUsuario(this, '<@${discordId}>', '${nome}', 'assets/img/${primeiroNome}.png')">
-    <img src="assets/img/${primeiroNome}.png" alt="${nome}">
-    <span>${nome}</span>
-</div>`;
-
-    const formData = new FormData();
-
-    formData.append("payload_json", JSON.stringify({
-        username:"Vanilla Hub - Registro",
-        embeds:[{
-            title:"📋 Novo registro de membro",
-            color:16711680,
-            fields:[
-                { name:"👤 Nome do personagem", value:nome, inline:false },
-                { name:"🆔 ID Discord", value:discordId, inline:false },
-                { name:"🔔 Menção", value:`<@${discordId}>`, inline:false },
-                { name:"🧩 Código pronto", value:"```html\n" + codigoHTML + "\n```", inline:false },
-                { name:"🖼️ Nome do PNG", value:`${primeiroNome}.png`, inline:false }
-            ],
-            image:{ url:"attachment://personagem.png" },
-            footer:{ text:"Aguardando aprovação" },
-            timestamp:new Date()
-        }]
-    }));
-
-    formData.append("file", foto, "personagem.png");
-
-    try{
-        await fetch(webhookRegistro, {
-            method:"POST",
-            body:formData
-        });
-
-        localStorage.setItem("ultimoRegistroMembro", agora);
-        mostrarToast("Registro enviado! Aguarde aprovação da equipe.");
-        fecharPopupRegistro();
-
-        document.getElementById("registroNome").value = "";
-        document.getElementById("registroDiscord").value = "";
-        document.getElementById("registroFoto").value = "";
-
-    }catch(error){
-        console.error(error);
-        mostrarToast("Erro ao enviar registro.", "error");
-    }finally{
-        registroEnviando = false;
-    }
-
-}
-    </script>
+        </script>
 </body>
 </html>
