@@ -835,9 +835,10 @@ textarea{
 
 
 .parceria-card small{
-    font-size:12px;
+    font-size:11px;
     color:#cfcfcf;
     font-weight:600;
+    line-height:1.25;
 }
 
 .parceria-grid input:checked + .parceria-card small{
@@ -1283,14 +1284,14 @@ input:disabled{
                 <label for="sem" class="parceria-card">
                     <span class="emoji">❌</span>
                     <span>Sem parceria</span>
-                    <small>30%</small>
+                    <small>Cliente 70% • Painel 20% • Máquina 10%</small>
                 </label>
 
                 <input type="radio" name="parceria" id="normal" value="normal">
                 <label for="normal" class="parceria-card">
                     <span class="emoji">🤝</span>
                     <span>Com parceria</span>
-                    <small>25%</small>
+                    <small>Cliente 75% • Painel 15% • Máquina 10%</small>
                 </label>
             </div>
         </div>
@@ -1404,13 +1405,15 @@ input:disabled{
 
     const PARCERIAS = {
         sem: {
-            taxaPainel: 0.15,
-            descontoTotal: 0.30,
+            percentualCliente: 0.70,
+            percentualPainel: 0.20,
+            percentualMaquina: 0.10,
             nome: "Sem parceria"
         },
         normal: {
-            taxaPainel: 0.10,
-            descontoTotal: 0.25,
+            percentualCliente: 0.75,
+            percentualPainel: 0.15,
+            percentualMaquina: 0.10,
             nome: "Com parceria"
         }
     };
@@ -1572,19 +1575,20 @@ input:disabled{
             return null;
         }
 
-        const painel = valor * dadosParceria.taxaPainel;
-        const final = valor - (valor * dadosParceria.descontoTotal);
-        const taxaTotal = valor * dadosParceria.descontoTotal;
+        const cliente = Math.floor(valor * dadosParceria.percentualCliente);
+        const painel = Math.floor(valor * dadosParceria.percentualPainel);
+        const maquina = Math.floor(valor * dadosParceria.percentualMaquina);
 
         return {
             valor,
             tipo,
             parceria: dadosParceria.nome,
-            taxaPainel: dadosParceria.taxaPainel,
-            descontoTotal: dadosParceria.descontoTotal,
+            percentualCliente: dadosParceria.percentualCliente,
+            percentualPainel: dadosParceria.percentualPainel,
+            percentualMaquina: dadosParceria.percentualMaquina,
+            cliente,
             painel,
-            final,
-            taxaTotal
+            maquina
         };
     }
 
@@ -1592,29 +1596,29 @@ input:disabled{
         const dados = validarDadosLavagem();
         if(!dados) return null;
 
-        const porcentagemPainel = dados.taxaPainel * 100;
-        const porcentagemDesconto = dados.descontoTotal * 100;
-        const porcentagemEntregar = 100 - porcentagemDesconto;
+        const porcentagemCliente = dados.percentualCliente * 100;
+        const porcentagemPainel = dados.percentualPainel * 100;
+        const porcentagemMaquina = dados.percentualMaquina * 100;
 
         document.getElementById("resultado").innerHTML = `
             <div class="result-card">
-                <span><img src="assets/img/money.png" class="icon">Valor</span>
+                <span><img src="assets/img/money.png" class="icon">Valor total</span>
                 <strong>${Math.floor(dados.valor).toLocaleString("pt-BR")}</strong>
+            </div>
+
+            <div class="result-card highlight">
+                <span><img src="assets/img/send.png" class="icon">Cliente (${porcentagemCliente}%)</span>
+                <strong>${dados.cliente.toLocaleString("pt-BR")}</strong>
             </div>
 
             <div class="result-card">
                 <span><img src="assets/img/deposit.png" class="icon">Depositar no painel (${porcentagemPainel}%)</span>
-                <strong>${Math.floor(dados.painel).toLocaleString("pt-BR")}</strong>
+                <strong>${dados.painel.toLocaleString("pt-BR")}</strong>
             </div>
 
             <div class="result-card">
-                <span><img src="assets/img/money.png" class="icon">Taxa total (${porcentagemDesconto}%)</span>
-                <strong>${Math.floor(dados.taxaTotal).toLocaleString("pt-BR")}</strong>
-            </div>
-
-            <div class="result-card highlight">
-                <span><img src="assets/img/send.png" class="icon">Entregar (${porcentagemEntregar}%)</span>
-                <strong>${Math.floor(dados.final).toLocaleString("pt-BR")}</strong>
+                <span><img src="assets/img/money.png" class="icon">Máquina (${porcentagemMaquina}%)</span>
+                <strong>${dados.maquina.toLocaleString("pt-BR")}</strong>
             </div>
         `;
 
@@ -1699,7 +1703,7 @@ setTimeout(() => {
         if(!dados) return;
 
         const confirmar = window.confirm(
-            `Confirmar lavagem de ${Math.floor(dados.valor).toLocaleString("pt-BR")} (${dados.parceria})?`
+            `Confirmar lavagem de ${Math.floor(dados.valor).toLocaleString("pt-BR")} (${dados.parceria})?\nCliente: ${dados.cliente.toLocaleString("pt-BR")}\nPainel: ${dados.painel.toLocaleString("pt-BR")}\nMáquina: ${dados.maquina.toLocaleString("pt-BR")}`
         );
 
         if(!confirmar) return;
@@ -1739,13 +1743,18 @@ setTimeout(() => {
                                 inline: true
                             },
                             {
-                                name: "🏦 Depositado no painel",
-                                value: Math.floor(dados.painel).toLocaleString("pt-BR"),
+                                name: "👤 Cliente",
+                                value: `${dados.cliente.toLocaleString("pt-BR")} (${dados.percentualCliente * 100}%)`,
                                 inline: false
                             },
                             {
-                                name: "📤 Valor entregue",
-                                value: Math.floor(dados.final).toLocaleString("pt-BR"),
+                                name: "🏦 Painel da facção",
+                                value: `${dados.painel.toLocaleString("pt-BR")} (${dados.percentualPainel * 100}%)`,
+                                inline: false
+                            },
+                            {
+                                name: "🏭 Máquina",
+                                value: `${dados.maquina.toLocaleString("pt-BR")} (${dados.percentualMaquina * 100}%)`,
                                 inline: false
                             }
                         ],
